@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   --background: #ffffff;
@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #000000;
     --foreground: #ededed;
   }
 }
@@ -24,4 +24,27 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Custom utility class for full viewport height and background color */
+  .h-full-vh {
+    height: 100vh;
+  }
+
+  .bg-black {
+    background-color: #000;
+  }
+}
+
+/* globals.css */
+
+/* globals.css */
+
+.oil-spill-heading {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 50px;
+  border-radius: 5px; /* Optional: to give the heading rounded corners */
 }

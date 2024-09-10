@@ -1,0 +1,16 @@
+# Enforce LF line endings for text files
+* text=auto eol=lf
+
+# Specify LF line endings for specific file types
+*.tsx text eol=lf
+*.ts  text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.md  text eol=lf
+*.gltf text eol=lf
+
+# Ignore binary files (Git should not change line endings)
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
