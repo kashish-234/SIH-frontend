@@ -1,34 +1,38 @@
-// Components/Home.tsx
 'use client';
 
 import React from 'react';
-import EarthModel from './EarthModel'; // Ensure this path is correct
-import RotatingEarth from './RotatingEarth';
+import Link from 'next/link'; // For linking to different pages
+import RotatingEarthModel from './RotatingEarth';
+import StarsBackground from './StarsBackground'; // Import the starry background
 
-interface HomeProps {
-  onEarthClick: () => void; // Define prop type for click handler
-}
-
-const Home: React.FC<HomeProps> = ({ onEarthClick }) => {
+const Home: React.FC = () => {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-6 md:px-12">
-      {/* Heading Section */}
-      <header className="text-center mt-10 mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold">Welcome to Our Oil Spill Detection Platform</h1>
-        <p className="text-lg md:text-xl mt-4">
-          Leveraging advanced technologies to protect our marine environments.
-        </p>
+    <main className="relative flex flex-col items-center justify-center min-h-screen text-white px-6 md:px-12">
+   
+      <StarsBackground />
+
+      {/* Header Section with Project Name and Navbar */}
+      <header className="w-full fixed top-0 left-0 flex items-center justify-between py-4 px-6 bg-black z-50 border-b border-white-700">
+        {/* Project Name */}
+        <div className="text-2xl font-bold">Project Name</div>
+
+        {/* Navbar */}
+        <nav className="flex space-x-4">
+          <Link href="/" className="hover:text-gray-400">Home</Link>
+          <Link href="/oil-spill" className="hover:text-gray-400">Oil Spill</Link>
+          <Link href="/vessel" className="hover:text-gray-400">Vessel</Link>
+        </nav>
       </header>
 
       {/* Main Content Section with Earth Model and About Us */}
-      <section className="flex flex-col md:flex-row items-center justify-between w-full">
+      <section className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full mt-16">
         {/* Earth Model on the Left */}
-        <div className="flex-1 flex justify-center mb-12 md:mb-0" onClick={onEarthClick}>
-          <EarthModel />
+        <div className="flex-1 flex justify-center mb-12 md:mb-0">
+          <RotatingEarthModel />
         </div>
 
         {/* About Us Section on the Right */}
-        <div className="flex-1 md:pl-12 text-left bg-black py-8 md:py-12">
+        <div className="flex-1 md:pl-12 text-left py-8 md:py-12">
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">About Us</h2>
           <p className="text-md md:text-lg leading-relaxed">
             Our platform specializes in detecting oil spills in marine environments using Automatic Identification System (AIS) data and satellite imagery. By integrating advanced algorithms and real-time data analysis, we aim to minimize the environmental impact of oil spills, providing crucial insights for quick response and mitigation efforts.

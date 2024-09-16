@@ -102,7 +102,7 @@
   "materials": [
     {
       "doubleSided": true,
-      "name": "Scene_-_Root",
+      "name": "8k_earth_daymap",
       "pbrMetallicRoughness": {
         "baseColorTexture": {
           "index": 0

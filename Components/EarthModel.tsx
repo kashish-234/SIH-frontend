@@ -1,20 +1,45 @@
-'use client'; // Ensures the component runs on the client side
-
 import React from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import RotatingEarth from './RotatingEarth'; // Adjust import path as needed
+import { Canvas, useLoader } from '@react-three/fiber';
+import { MeshBasicMaterial, SphereGeometry, Mesh, TextureLoader, BufferGeometry, BufferAttribute } from 'three';
+import { useFrame } from '@react-three/fiber';
 
-export default function EarthModel() {
+type Coordinate = { x: number; y: number; z: number };
+
+// Component to create a red overlay based on given coordinates
+const RedOverlay: React.FC<{ coordinates: Coordinate[] }> = ({ coordinates }) => {
+  const geometry = new BufferGeometry();
+  const vertices: number[] = [];
+
+  coordinates.forEach(coord => {
+    vertices.push(coord.x, coord.y, coord.z);
+  });
+
+  // Close the shape
+  const firstCoord = coordinates[0];
+  vertices.push(firstCoord.x, firstCoord.y, firstCoord.z);
+
+  geometry.setAttribute('position', new BufferAttribute(new Float32Array(vertices), 3));
+
   return (
-    <Canvas
-      style={{ height: '110vh', backgroundColor: '#000' }} // Canvas setup
-      camera={{ position: [0, 0, 5], fov: 50 }} // Camera setup
-    >
-      <OrbitControls enableZoom={true} />
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
-      <RotatingEarth /> {/* Render RotatingEarth within Canvas */}
-    </Canvas>
+    <mesh geometry={geometry}>
+      <meshBasicMaterial color={0xff0000} side={2} transparent opacity={0.5} />
+    </mesh>
   );
-}
+};
+
+// Component to display the Earth model
+const StaticEarthModel: React.FC<{ coordinates?: Coordinate[] }> = ({ coordinates }) => {
+  const texture = useLoader(TextureLoader, '/textures/8k_earth_daymap.jpg'); // Update the path as needed
+
+  return (
+    <>
+      <mesh>
+        <sphereGeometry args={[1.5, 32, 32]} />
+        <meshBasicMaterial map={texture} />
+      </mesh>
+      {coordinates && <RedOverlay coordinates={coordinates} />}
+    </>
+  );
+};
+
+export default StaticEarthModel;

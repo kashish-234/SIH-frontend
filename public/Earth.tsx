@@ -11,7 +11,7 @@ type GLTFResult = GLTF & {
     Object_4: THREE.Mesh;
   };
   materials: {
-    ['Scene_-_Root']: THREE.MeshStandardMaterial;
+    ['8k_earth_daymap']: THREE.MeshStandardMaterial;
   };
   animations: GLTFAction[];
 };
@@ -21,7 +21,7 @@ export const Model = forwardRef<Group, JSX.IntrinsicElements['group']>((props, r
   const { nodes, materials } = useGLTF('/earth.gltf') as GLTFResult;
   return (
     <group ref={ref} {...props} dispose={null}>
-      <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={1.128} />
+      <mesh geometry={nodes.Object_4.geometry} material={materials['8k_earth_daymap']} scale={1.128} />
     </group>
   );
 });

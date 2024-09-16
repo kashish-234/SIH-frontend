@@ -11,10 +11,8 @@ interface SatelliteProps {
 const Satellite: React.FC<SatelliteProps> = ({ position, target }) => {
   const satelliteRef = useRef<Group>(null);
 
-  // Use frame hook to update satellite orientation
   useFrame(() => {
     if (satelliteRef.current) {
-      // Make the satellite look at the target coordinate
       satelliteRef.current.lookAt(target.x, target.y, target.z);
     }
   });
@@ -24,7 +22,7 @@ const Satellite: React.FC<SatelliteProps> = ({ position, target }) => {
     object.traverse((child) => {
       if (child instanceof Mesh) {
         const material = child.material as MeshStandardMaterial;
-        material.emissive.set('#ff0000'); // Bright white emissive color
+        material.emissive.set('#ff0000'); // Bright red emissive color
         material.emissiveIntensity = 1; // Increase intensity
         material.needsUpdate = true; // Ensure the material updates
       }
